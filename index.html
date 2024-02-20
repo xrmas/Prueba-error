@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sorpresa</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+
+    <div class="contenedor">
+        <p>¿Quieres salir conmigo el viernes?</p>
+        <button id="yesBtn">Yup</button>
+        <button id="noBtn">Nel</button>
+        <button id="shareBtn">Compartir</button>
+    </div>
+
+    <script>
+        document.getElementById('shareBtn').addEventListener('click', function() {
+            if (navigator.share) {
+                navigator.share({
+                    title: '¡Sorpresa!',
+                    text: '¿Quieres salir conmigo el viernes?',
+                    url: window.location.href
+                })
+                .then(() => console.log('Enlace compartido con éxito'))
+                .catch((error) => console.error('Error al compartir enlace', error));
+            } else {
+                console.log('La API de Web Share no está disponible en este navegador');
+            }
+        });
+    </script>
+</body>
+</html>
+
